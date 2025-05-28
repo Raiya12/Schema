@@ -119,5 +119,35 @@ ALTER SCHEMA Sales TRANSFER dbo.Client;
 ALTER SCHEMA Sales TRANSFER dbo.Contract;
 ALTER SCHEMA Sales TRANSFER dbo.Payment;
 
+-----------------------------------Part 6:
+-- HR schema
+SELECT * FROM HR.Employee;
 
+-- Academics schema
+SELECT * FROM Academics.Course;
 
+-- Sales schema
+SELECT * FROM Sales.Client;
+
+-- Employees hired after Jan 1, 2023
+SELECT * FROM HR.Employee WHERE HireDate > '2023-01-01';
+
+-- Courses with duration of 4 weeks
+SELECT * FROM Academics.Course WHERE DurationWeeks = 4;
+
+-----------------------------------Part 7:
+--Q1: What are the advantages of separating tables into schemas in a large system?
+	--Better organization of objects by domain or department.
+	--Simplifies understanding of system structure.
+	--Eases maintenance and modular development.
+
+--Q2: How can schemas support security and access control?
+	--Permissions can be applied at the schema level instead of individual tables.
+	--You can restrict users to only certain schemas, improving data isolation.
+
+--Q3: Suggest a new department and which tables it would manage.
+	--Department: IT Support
+	--Schema Name: Support
+	--Suggested Tables:
+		--SupportTickets (TicketID, Issue, Status, CreatedDate, ResolvedDate)
+		--Technicians (TechID, FullName, Specialty)

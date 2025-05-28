@@ -92,3 +92,40 @@ INSERT INTO [Transaction] VALUES (2001, 1001, 250.00, 'Deposit', GETDATE());
 -- Insert into Loan
 INSERT INTO Loan VALUES (3001, 1, 10000.00, 'Personal', 'Approved');
 
+------------------------------------------------------------Part 3: View Creation Scenarios 
+ 
+--1. Customer Service View
+CREATE VIEW CustomerServiceView AS
+SELECT 
+    c.FullName,
+    c.Phone,
+    a.Status AS AccountStatus
+FROM Customer c
+JOIN Account a ON c.CustomerID = a.CustomerID;
+
+--2. Finance Department View
+CREATE VIEW FinanceView AS
+SELECT 
+    AccountID,
+    Balance,
+    AccountType
+FROM Account;
+
+--3. Loan Officer View
+CREATE VIEW LoanOfficerView AS
+SELECT 
+    LoanID,
+    CustomerID,
+    LoanAmount,
+    LoanType,
+    Status
+FROM Loan;
+
+--4. Transaction Summary View
+CREATE VIEW RecentTransactions AS
+SELECT 
+    AccountID,
+    Amount,
+    TransactionDate
+FROM [Transaction]
+WHERE TransactionDate >= DATEADD(DAY, -30, GETDATE());

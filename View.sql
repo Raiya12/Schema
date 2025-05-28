@@ -15,7 +15,7 @@ CREATE TABLE Account (
     Status VARCHAR(20) 
 ); 
  
-CREATE TABLE Transactions ( 
+CREATE TABLE [Transaction] ( 
     TransactionID INT PRIMARY KEY, 
     AccountID INT FOREIGN KEY REFERENCES Account(AccountID), 
     Amount DECIMAL(10, 2), 
@@ -31,7 +31,7 @@ CREATE TABLE Loan (
     Status VARCHAR(20) 
 ); 
 
---Part 1: Research & Documentation
+------------------------------------------------------------Part 1: Research & Documentation
 --1.1 Standard View
 	--What is it?
 		--A standard view is a virtual table based on the result set of a SELECT query. It does not store data physically but retrieves data dynamically from the base tables when queried.
@@ -77,3 +77,18 @@ CREATE TABLE Loan (
 		--Limitations & Performance:
 		--Manual partitioning needed.
 		--Can affect performance if improperly used without check constraints.
+
+
+------------------------------------------------------------Part 2: Real-Life Implementation Task (Banking System) 
+-- Insert into Customer
+INSERT INTO Customer VALUES (1, 'John Doe', 'john@example.com', '555-1234', '123456789');
+
+-- Insert into Account
+INSERT INTO Account VALUES (1001, 1, 5000.00, 'Savings', 'Active');
+
+-- Insert into [Transaction]
+INSERT INTO [Transaction] VALUES (2001, 1001, 250.00, 'Deposit', GETDATE());
+
+-- Insert into Loan
+INSERT INTO Loan VALUES (3001, 1, 10000.00, 'Personal', 'Approved');
+

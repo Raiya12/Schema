@@ -74,3 +74,50 @@ INSERT INTO dbo.Client VALUES (601, 'TechCorp LLC', 'Hassan Said');
 INSERT INTO dbo.Contract VALUES (701, 601, '2025-01-01', '2025-12-31', 10000.00); 
 INSERT INTO dbo.Payment VALUES (801, 701, '2025-02-01', 2000.00);
 
+-----------------------------------Part 1:
+--Q1: What is a schema in SQL Server?
+	--A schema in SQL Server is a logical container that holds database objects like tables, views, procedures, etc. It helps organize objects and manage permissions efficiently.
+
+--Q2: How is a schema different from a database?
+	--A database is a complete collection of data and objects.
+	--A schema is a subset within a database used to logically group related objects.
+
+--Q3: List at least two benefits of using schemas in real applications.
+	--Organizational Clarity: Schemas group related objects, making it easier to understand and manage large databases.
+	--Security Management: Permissions can be granted at the schema level, simplifying access control.
+
+--Q4: Can different schemas have the same table name?
+	--Yes. Tables in different schemas can have the same name since schema + table name makes the object name unique (e.g., HR.Employee vs Sales.Employee).
+
+-----------------------------------Part 2:
+
+--| Department       | Schema      | Tables Managed                      |
+--| ---------------- | ----------- | ----------------------------------- |
+--| Human Resources  | `HR`        | `Employee`, `Trainer`, `Attendance` |
+--| Academic Affairs | `Academics` | `Course`, `Batch`, `Exam`, `Result` |
+--| Business/Sales   | `Sales`     | `Client`, `Contract`, `Payment`     |
+
+-----------------------------------Part 3:
+CREATE SCHEMA HR;
+CREATE SCHEMA Academics;
+CREATE SCHEMA Sales;
+
+-----------------------------------Part 4 & 5:
+-- HR Schema
+ALTER SCHEMA HR TRANSFER dbo.Employee;
+ALTER SCHEMA HR TRANSFER dbo.Trainer;
+ALTER SCHEMA HR TRANSFER dbo.Attendance;
+
+-- Academics Schema
+ALTER SCHEMA Academics TRANSFER dbo.Course;
+ALTER SCHEMA Academics TRANSFER dbo.Batch;
+ALTER SCHEMA Academics TRANSFER dbo.Exam;
+ALTER SCHEMA Academics TRANSFER dbo.Result;
+
+-- Sales Schema
+ALTER SCHEMA Sales TRANSFER dbo.Client;
+ALTER SCHEMA Sales TRANSFER dbo.Contract;
+ALTER SCHEMA Sales TRANSFER dbo.Payment;
+
+
+
